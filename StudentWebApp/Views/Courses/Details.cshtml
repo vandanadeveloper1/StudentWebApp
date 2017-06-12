@@ -1,0 +1,53 @@
+﻿@model StudentWebApp.Models.Database.Course
+
+@*var startDate = @Model.StartDate.HasValue ? @Model.StartDate.Value.ToShortDateString() : null*@
+<div class="container">
+    <div>
+        <hr />
+        <h4>Details of Course</h4>
+        <dl class="dl-horizontal">
+            <dt>
+                CourseName
+            </dt>
+            <dd>
+                @Model.CourseName
+            </dd>
+            <dt>
+                Fee
+            </dt>
+            <dd>
+                @Model.Fee
+            </dd>
+            <dt>
+                StartDate
+            </dt>
+            <dd>
+                @Model.StartDate.Value.ToShortDateString()
+                @*@Model.StartDate.HasValue ? @Model.StartDate.Value.ToShortDateString() : null*@
+            </dd>
+            <dt>
+                EndDate
+            </dt>
+            <dd>
+                @Model.EndDate.Value.ToShortDateString()
+                @*@Model.EndDate.HasValue ? @Model.EndDate.Value.ToShortDateString() : null*@
+            </dd>
+            <dt>
+                Student FirstName
+            </dt>
+            <dd>
+                @Model.Student.FirstName
+            </dd>
+            <dt>
+                Teacher FirstName
+            </dt>
+            <dd>
+                @Model.Teacher.FirstName
+            </dd>
+        </dl>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CourseID }) |
+    @Html.ActionLink("Back to List", "Index", new { id = Model.StudentID })
+</p>

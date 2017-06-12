@@ -1,0 +1,75 @@
+﻿@model StudentWebApp.Models.Database.Course
+
+
+<div class="container">
+    
+    <h3>Are you sure you want to delete this Course?</h3>
+    <div>
+
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                CourseName
+            </dt>
+
+            <dd>
+                @Model.CourseName
+            </dd>
+
+            <dt>
+                Fee
+            </dt>
+
+            <dd>
+                @Model.Fee
+            </dd>
+
+            <dt>
+                StartDate
+            </dt>
+
+            <dd>
+                @Model.StartDate.Value.ToShortDateString()
+                @*@Model.StartDate.HasValue ? @Model.StartDate.Value.ToShortDateString() : null*@
+            </dd>
+
+            <dt>
+                EndDate
+            </dt>
+
+            <dd>
+                @Model.EndDate.Value.ToShortDateString()
+                @*@Model.EndDate.HasValue ? @Model.EndDate.Value.ToShortDateString() : null*@
+            </dd>
+
+            <dt>
+                Student FirstName
+            </dt>
+
+            <dd>
+                @Model.Student.FirstName
+            </dd>
+
+            <dt>
+                Teacher FirstName
+            </dt>
+
+            <dd>
+                @Model.Teacher.FirstName
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default"  id="btnDelete"/> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+    
+ 
+</div>

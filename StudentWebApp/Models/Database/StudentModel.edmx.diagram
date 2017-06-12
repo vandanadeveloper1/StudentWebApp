@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4b65121279b14de8b423b1ef44ad0f46" Name="Diagram1" ZoomLevel="84" >
+        <EntityTypeShape EntityType="StudentModel.Student" Width="1.5" PointX="1.75" PointY="2.375" />
+        <EntityTypeShape EntityType="StudentModel.Course" Width="1.5" PointX="4.125" PointY="2.125" />
+        <EntityTypeShape EntityType="StudentModel.Teacher" Width="1.5" PointX="6.375" PointY="2.25" />
+        <EntityTypeShape EntityType="StudentModel.TeacherRole" Width="1.5" PointX="8.5" PointY="2.625" />
+        <EntityTypeShape EntityType="StudentModel.Role" Width="1.5" PointX="4.75" PointY="5.875" />
+        <EntityTypeShape EntityType="StudentModel.User" Width="1.5" PointX="7.125" PointY="5.875" />
+        <AssociationConnector Association="StudentModel.StudentCourse" />
+        <AssociationConnector Association="StudentModel.TeacherID" />
+        <AssociationConnector Association="StudentModel.TeacherTeacherRole" />
+        <AssociationConnector Association="StudentModel.UserRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

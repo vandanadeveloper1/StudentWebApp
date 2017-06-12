@@ -1,0 +1,70 @@
+﻿@model IEnumerable<StudentWebApp.Models.Database.Course>
+
+<h2>Courses taken by  : @ViewBag.FirstName  @ViewBag.LastName</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<link href="~/Content/Datatables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/Datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<div class="table-responsive no-padding">
+    <table class="table table-striped coursedatatable">
+        <thead>
+            <tr style="font-weight: bold;">
+                <td>CourseName </td>
+                <td>Fee </td>
+                <td>StartDate </td>
+                <td>EndDate </td>
+                <td>Student Last Name</td>
+                <td>Teacher Last Name</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                var startDate = @item.StartDate.HasValue ? @item.StartDate.Value.ToShortDateString() : null;
+                var endDate = @item.EndDate.HasValue ? @item.EndDate.Value.ToShortDateString() : null;
+                <tr>
+                    <td>@item.CourseName</td>
+                    <td>@item.Fee</td>
+                    <td>@startDate </td>
+                    <td>@endDate</td>
+                    <td>@item.Student.LastName</td>
+                    <td>@item.Teacher.LastName</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.CourseID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.CourseID }) |
+                        @if (@item.Student.Courses.Count == 0)
+                        {    @Html.ActionLink("Delete", "Delete", new { id = item.StudentID })  }
+                   
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section Scripts {
+     <script type="text/javascript">
+        $(function () {
+            // dataTable code
+            $(".coursedatatable").DataTable({
+                paging: true,
+                scrollY: 400,
+                'pageLength': 3,
+                'columns': [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                 ]
+            });
+
+        });
+    </script>
+}

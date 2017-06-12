@@ -1,0 +1,40 @@
+﻿@model StudentWebApp.Models.Database.Student
+<div class="container">
+    <hr />
+    <h4>Details of Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            FirstName
+        </dt>
+        <dd>
+            @Model.FirstName
+        </dd>
+
+        <dt>
+            LastName
+        </dt>
+        <dd>
+            @Model.LastName
+        </dd>
+
+        <dt>
+            Email
+        </dt>
+        <dd>
+            @Model.Email
+        </dd>
+
+        <dt>
+            Date of Birth
+        </dt>
+        <dd>
+            @Model.DOB.ToShortDateString()
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.StudentID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

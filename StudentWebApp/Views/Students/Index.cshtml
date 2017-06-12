@@ -1,0 +1,68 @@
+﻿@model IEnumerable<StudentWebApp.Models.Database.Student>
+
+<h2>Student List</h2>
+
+<link href="~/Content/Datatables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+ <link href="~/Content/Datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="table-responsive no-padding">
+    <table class="table table-striped studentdatatable">
+        <thead>
+            <tr style="font-weight: bold;">
+                <td>FirstName </td>
+                <td>LastName</td>
+                <td>Email </td>
+                <td>DOB </td>
+                <td>Courses Taken</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FirstName </td>
+                    <td>@item.LastName </td>
+                    <td>@item.Email </td>
+                    <td>@item.DOB.ToShortDateString()</td>
+                    <td>@item.Courses.Count </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.StudentID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.StudentID }) |
+                        @Html.ActionLink("View Courses", "Index", "Courses", new { id = item.StudentID }, null) |
+                        @if (@item.Courses.Count == 0)
+                        {    @Html.ActionLink("Delete", "Delete", new { id = item.StudentID })  }
+                     
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            // dataTable code
+            $(".studentdatatable").DataTable({
+                paging: true,
+                scrollY: 400,
+                'pageLength': 3,
+                'columns': [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                    
+                ]
+
+            });
+
+        });
+    </script>
+}
