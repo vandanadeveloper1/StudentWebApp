@@ -23,21 +23,36 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Students", "Index", "Students")</li>
                     @*<li>@Html.ActionLink("Programs", "Index", "Program")</li>*@
                     <li class="dropdown">
-                        <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Programs <span class="caret"></span></a>
+                        <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">ViewCourses <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Art Work", "Art", "Programs")</li>
-                            <li>@Html.ActionLink("Outdoor Activities", "Outdoor", "Programs")</li>
-                            <li>@Html.ActionLink("Music", "Music", "Programs")</li>
-                            <li>@Html.ActionLink("Reading", "Reading", "Programs")</li>
+                            <li>@Html.ActionLink("Art Work", "Art", "ViewCourses")</li>
+                            <li>@Html.ActionLink("Outdoor Activities", "Outdoor", "ViewCourses")</li>
+                            <li>@Html.ActionLink("Music", "Music", "ViewCourses")</li>
+                            <li>@Html.ActionLink("Reading", "Reading", "ViewCourses")</li>
                         </ul>
                     </li>
                     <li>@Html.ActionLink("Teachers", "Index", "Teachers")</li>
                     <li>@Html.ActionLink("Schedule", "Index", "Schedule")</li>
                     <li>@Html.ActionLink("About Us", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
+                    @{
+                        if (User.Identity.IsAuthenticated && Roles.GetRolesForUser().Length > 0)
+                        {
+                            <li>@Html.ActionLink("Students", "Index", "Students")</li>
+                            <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                            @*<li>Welcome @User.Identity.Name  |  @Roles.GetRolesForUser()[0]</li>*@
+                            <li>  Welcome @User.Identity.Name   </li>
+
+                        }
+                        else
+                        {
+                            <li> @Html.ActionLink("Login", "Login", "Account") </li>
+                            <li> @Html.ActionLink("Register", "Register", "Account") </li>
+                        }
+                    }
+
                 </ul>
             </div>
         </div>

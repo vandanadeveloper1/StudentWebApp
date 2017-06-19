@@ -2,10 +2,18 @@
 
 <h2>Courses taken by  : @ViewBag.FirstName  @ViewBag.LastName</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    @{
+        if (User.Identity.IsAuthenticated && Roles.GetRolesForUser().Length > 0)
+        {
+            if (@Roles.GetRolesForUser()[0] == "admin")
+            {
+                <p>
+                    @Html.ActionLink("Add New Course", "Create")
+                </p>
+            }
+        }
 
+    }
 <link href="~/Content/Datatables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 <link href="~/Content/Datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
 
@@ -13,8 +21,8 @@
     <table class="table table-striped coursedatatable">
         <thead>
             <tr style="font-weight: bold;">
-                <td>CourseName </td>
-                <td>Fee </td>
+                <td>Course Name </td>
+                <td>Fee Per Session</td>
                 <td>StartDate </td>
                 <td>EndDate </td>
                 <td>Student Last Name</td>
@@ -35,11 +43,20 @@
                     <td>@item.Student.LastName</td>
                     <td>@item.Teacher.LastName</td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.CourseID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.CourseID }) |
-                        @if (@item.Student.Courses.Count == 0)
-                        {    @Html.ActionLink("Delete", "Delete", new { id = item.StudentID })  }
-                   
+                       @Html.ActionLink("Details of Course", "Details", new { id = item.CourseID }) |
+                        @if (User.Identity.IsAuthenticated && Roles.GetRolesForUser().Length > 0)
+                        {
+                            if (@Roles.GetRolesForUser()[0] == "admin" && @item.Student.Courses.Count > 0)
+                            {
+                                @Html.ActionLink("Edit Course |", "Edit", new { id = item.CourseID })
+                            }
+                            else if (@Roles.GetRolesForUser()[0] == "admin" && @item.Student.Courses.Count == 0)
+                            {
+                                @Html.ActionLink("Edit Course |", "Edit", new { id = item.CourseID })
+                                @Html.ActionLink("Delete Course", "Delete", new { id = item.CourseID })
+                            }
+                        }
+                                      
                     </td>
                 </tr>
             }

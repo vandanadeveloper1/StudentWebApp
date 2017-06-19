@@ -3,9 +3,18 @@
 <h2>Student List</h2>
 
 <link href="~/Content/Datatables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
- <link href="~/Content/Datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/Datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @{
+        if (User.Identity.IsAuthenticated && Roles.GetRolesForUser().Length > 0)
+        {
+            if (@Roles.GetRolesForUser()[0] == "admin")
+            {
+                @Html.ActionLink("Add New Student", "Create")
+            }
+        }
+
+    }
 </p>
 
 <div class="table-responsive no-padding">
@@ -30,13 +39,22 @@
                     <td>@item.DOB.ToShortDateString()</td>
                     <td>@item.Courses.Count </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.StudentID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.StudentID }) |
-                        @Html.ActionLink("View Courses", "Index", "Courses", new { id = item.StudentID }, null) |
-                        @if (@item.Courses.Count == 0)
-                        {    @Html.ActionLink("Delete", "Delete", new { id = item.StudentID })  }
-                     
-                    </td>
+                        @Html.ActionLink("Details of Student", "Details", new { id = item.StudentID }) |
+                        @if (User.Identity.IsAuthenticated && Roles.GetRolesForUser().Length > 0)
+                          {
+                              if (@Roles.GetRolesForUser()[0] == "admin" &&  @item.Courses.Count  > 0)
+                               {
+                                     @Html.ActionLink("Edit Student |", "Edit", new { id = item.StudentID }) 
+                              }
+                              else if (@Roles.GetRolesForUser()[0] == "admin" && @item.Courses.Count == 0)
+                                  {
+                                      @Html.ActionLink("Edit Student | ", "Edit", new { id = item.StudentID }) 
+                                      @Html.ActionLink("Delete Student |", "Delete", new { id = item.StudentID }) 
+                              }
+                          }
+                        @Html.ActionLink("Courses Taken", "Index", "Courses", new { id = item.StudentID }, null) 
+                      
+                   </td>
                 </tr>
             }
         </tbody>
@@ -58,7 +76,7 @@
                     null,
                     null,
                     null
-                    
+
                 ]
 
             });

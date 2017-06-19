@@ -7,14 +7,14 @@
       <Diagram DiagramId="4b65121279b14de8b423b1ef44ad0f46" Name="Diagram1" ZoomLevel="84" >
         <EntityTypeShape EntityType="StudentModel.Student" Width="1.5" PointX="1.75" PointY="2.375" />
         <EntityTypeShape EntityType="StudentModel.Course" Width="1.5" PointX="4.125" PointY="2.125" />
-        <EntityTypeShape EntityType="StudentModel.Teacher" Width="1.5" PointX="6.375" PointY="2.25" />
-        <EntityTypeShape EntityType="StudentModel.TeacherRole" Width="1.5" PointX="8.5" PointY="2.625" />
-        <EntityTypeShape EntityType="StudentModel.Role" Width="1.5" PointX="4.75" PointY="5.875" />
-        <EntityTypeShape EntityType="StudentModel.User" Width="1.5" PointX="7.125" PointY="5.875" />
+        <EntityTypeShape EntityType="StudentModel.Teacher" Width="1.5" PointX="6.5" PointY="2.75" />
         <AssociationConnector Association="StudentModel.StudentCourse" />
         <AssociationConnector Association="StudentModel.TeacherID" />
-        <AssociationConnector Association="StudentModel.TeacherTeacherRole" />
-        <AssociationConnector Association="StudentModel.UserRoles" />
+        <EntityTypeShape EntityType="StudentModel.UserProfile" Width="1.5" PointX="3.125" PointY="7.875" />
+        <EntityTypeShape EntityType="StudentModel.webpages_Membership" Width="1.5" PointX="5.625" PointY="7.125" />
+        <EntityTypeShape EntityType="StudentModel.webpages_OAuthMembership" Width="1.5" PointX="7.625" PointY="7.875" />
+        <EntityTypeShape EntityType="StudentModel.webpages_Roles" Width="1.5" PointX="0.5" PointY="8" />
+        <AssociationConnector Association="StudentModel.webpages_UsersInRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

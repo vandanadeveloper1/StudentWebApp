@@ -12,21 +12,18 @@ namespace StudentWebApp.Models.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class Teacher
+    public partial class webpages_Roles
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Teacher()
+        public webpages_Roles()
         {
-            this.Courses = new HashSet<Course>();
+            this.UserProfiles = new HashSet<UserProfile>();
         }
     
-        public int TeacherID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public string Designation { get; set; }
+        public int RoleId { get; set; }
+        public string RoleName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Course> Courses { get; set; }
+        public virtual ICollection<UserProfile> UserProfiles { get; set; }
     }
 }

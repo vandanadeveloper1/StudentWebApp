@@ -10,6 +10,7 @@ using StudentWebApp.Models.Database;
 
 namespace StudentWebApp.Controllers
 {
+    [Authorize]
     public class CoursesController : Controller
     {
         private StudentModelContainer db = new StudentModelContainer();
@@ -22,6 +23,7 @@ namespace StudentWebApp.Controllers
             var student = db.Students.Find(studentID);
             ViewBag.FirstName = student.FirstName;
             ViewBag.LastName = student.LastName;
+            ViewBag.StudentID = student.StudentID;
             return View(courses.ToList());
           
         }
@@ -42,6 +44,7 @@ namespace StudentWebApp.Controllers
         }
 
         // GET: Courses/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             ViewBag.StudentList = new SelectList(db.Students, "StudentID", "LastName");
@@ -54,6 +57,7 @@ namespace StudentWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         //public ActionResult Create([Bind(Include = "CourseID,CourseName,StudentID,Fee,StartDate,EndDate,TeacherID")] Course course)
         public ActionResult Create(Course course)
         {

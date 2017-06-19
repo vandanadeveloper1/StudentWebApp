@@ -10,6 +10,7 @@ using StudentWebApp.Models.Database;
 
 namespace StudentWebApp.Controllers
 {
+   [Authorize]
     public class StudentsController : Controller
     {
         private StudentModelContainer db = new StudentModelContainer();
@@ -36,6 +37,7 @@ namespace StudentWebApp.Controllers
         }
 
         // GET: Student/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +48,7 @@ namespace StudentWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Create(Student student)
         {
             if (ModelState.IsValid)

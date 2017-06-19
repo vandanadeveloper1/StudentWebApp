@@ -28,8 +28,9 @@ namespace StudentWebApp.Models.Database
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
-        public virtual DbSet<TeacherRole> TeacherRoles { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserProfile> UserProfiles { get; set; }
+        public virtual DbSet<webpages_Membership> webpages_Membership { get; set; }
+        public virtual DbSet<webpages_OAuthMembership> webpages_OAuthMembership { get; set; }
+        public virtual DbSet<webpages_Roles> webpages_Roles { get; set; }
     }
 }

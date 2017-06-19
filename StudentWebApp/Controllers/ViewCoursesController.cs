@@ -6,20 +6,22 @@ using System.Web.Mvc;
 
 namespace StudentWebApp.Controllers
 {
-   
-    public class HomeController : Controller
+    public class ViewCoursesController : Controller
     {
-        public ActionResult Index()
+        // GET: Program
+        public ActionResult Art()
         {
             return View();
         }
-
-        public ActionResult About()
+        public ActionResult Music()
         {
             return View();
         }
-
-        public ActionResult Contact()
+        public ActionResult Reading()
+        {
+            return View();
+        }
+        public ActionResult Outdoor()
         {
             return View();
         }
